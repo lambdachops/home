@@ -6,11 +6,11 @@
 (when window-system (set-exec-path-from-shell-PATH))
 
 (require 'package)
-;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
-(defvar my-packages '(better-defaults clojure-mode clojure-cheatsheet clojure-test-mode cider color-theme-solarized rainbow-delimiters paredit yasnippet company auto-complete ac-nrepl evil))
+(defvar my-packages '(better-defaults clojure-mode clojure-cheatsheet clojure-test-mode cider color-theme-solarized rainbow-delimiters paredit yasnippet company auto-complete popup ac-nrepl evil))
+
 (dolist (p my-packages)
     (when (not (package-installed-p p))
           (package-install p)))
@@ -22,9 +22,10 @@
 
 (add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
 (add-hook 'cider-repl-mode-hook 'auto-complete-mode)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 (add-hook 'cider-mode-hook 'ac-nrepl-setup)
-(add-hook 'cider-mode-hook 'auto-complete-mode)
+(add-hook 'cider-mode-hook 'company-mode)
 
 (eval-after-load "auto-complete"
 		 '(add-to-list 'ac-modes 'cider-repl-mode))
@@ -36,11 +37,13 @@
 (eval-after-load "cider"
 		 '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/color-theme-solarized-20140408.1309/")
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/color-theme-solarized-20140408.1309/")
 (load-theme 'solarized-dark t)
+(global-linum-mode 1)
 (rainbow-delimiters-mode 1)
 (evil-mode 1)
 (require 'icomplete)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
