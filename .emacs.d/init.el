@@ -1,4 +1,4 @@
-;;fix the PATH variable
+;;fix the PATH variable on Mac
 (when (eq system-type 'darwin)
   (progn
     (defun set-exec-path-from-shell-PATH ()
