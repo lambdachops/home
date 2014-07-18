@@ -18,8 +18,8 @@
           (package-install p)))
 
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'linum-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
