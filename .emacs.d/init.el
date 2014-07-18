@@ -11,7 +11,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
-(defvar my-packages '(better-defaults clojure-mode clojure-cheatsheet clojure-test-mode cider color-theme-solarized rainbow-delimiters paredit yasnippet company auto-complete popup ac-nrepl evil))
+(defvar my-packages '(better-defaults clojure-mode clojure-cheatsheet clojure-test-mode cider color-theme-solarized rainbow-delimiters paredit yasnippet company auto-complete popup ac-nrepl magit evil))
 
 (dolist (p my-packages)
     (when (not (package-installed-p p))
