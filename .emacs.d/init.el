@@ -1,9 +1,11 @@
 ;;fix the PATH variable
-(defun set-exec-path-from-shell-PATH ()
-  (let ((path-from-shell (shell-command-to-string "TERM=vt100 $SHELL -i -c 'echo $PATH'")))
-    (setenv "PATH" path-from-shell)
-       (setq exec-path (split-string path-from-shell path-separator))))
-(when window-system (set-exec-path-from-shell-PATH))
+(when (eq system-type 'darwin)
+  (progn
+    (defun set-exec-path-from-shell-PATH ()
+      (let ((path-from-shell (shell-command-to-string "TERM=vt100 $SHELL -i -c 'echo $PATH'")))
+      (setenv "PATH" path-from-shell)
+         (setq exec-path (split-string path-from-shell path-separator))))
+    (when window-system (set-exec-path-from-shell-PATH))))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
