@@ -1,19 +1,26 @@
-;;fix the PATH variable
-(defun set-exec-path-from-shell-PATH ()
-  (let ((path-from-shell (shell-command-to-string "TERM=vt100 $SHELL -i -c 'echo $PATH'")))
-    (setenv "PATH" path-from-shell)
-       (setq exec-path (split-string path-from-shell path-separator))))
-(when window-system (set-exec-path-from-shell-PATH))
+;;fix the PATH variable on Mac
+(when (eq system-type 'darwin)
+  (progn
+    (defun set-exec-path-from-shell-PATH ()
+      (let ((path-from-shell (shell-command-to-string "TERM=vt100 $SHELL -i -c 'echo $PATH'")))
+      (setenv "PATH" path-from-shell)
+         (setq exec-path (split-string path-from-shell path-separator))))
+    (when window-system (set-exec-path-from-shell-PATH))))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
-(defvar my-packages '(better-defaults clojure-mode clojure-cheatsheet clojure-test-mode cider color-theme-solarized rainbow-delimiters paredit yasnippet company auto-complete popup ac-nrepl evil))
+(defvar my-packages '(better-defaults clojure-mode clojure-cheatsheet clojure-test-mode cider color-theme-solarized rainbow-delimiters paredit yasnippet company auto-complete popup ac-nrepl magit evil))
 
 (dolist (p my-packages)
     (when (not (package-installed-p p))
           (package-install p)))
+
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'emacs-lisp-mode-hook 'linum-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'clojure-mode-hook 'linum-mode)
