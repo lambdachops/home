@@ -20,6 +20,7 @@
 (require 'ac-nrepl)
 (require 'auto-complete)
 (require 'cider)
+
 (global-auto-complete-mode t)
 ;;(require 'icomplete)
 
@@ -38,6 +39,10 @@
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
+
+(defun nolinum ()
+  (linum-mode 0))
+(add-hook 'cider-repl-mode-hook 'nolinum)
 
 (add-hook 'cider-mode-hook 'auto-complete-mode)
 (add-hook 'cider-mode-hook 'ac-nrepl-setup)
