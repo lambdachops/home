@@ -2,6 +2,7 @@
 	name = Adrian Cumiskey
 	email = adrian.cumiskey@gmail.com
 [alias]
+	a = add
 	ci = commit
 	cl = clone
 	st = status
