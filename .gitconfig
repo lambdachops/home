@@ -3,6 +3,7 @@
 	email = adrian.cumiskey@gmail.com
 [alias]
 	a = add
+	aa = add --all
 	ci = commit
 	cl = clone
 	st = status
