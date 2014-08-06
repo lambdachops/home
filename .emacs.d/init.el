@@ -40,6 +40,8 @@
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
 
+(setq save-interprogram-paste-before-kill nil)
+
 (defun nolinum ()
   (linum-mode 0))
 (add-hook 'cider-repl-mode-hook 'nolinum)
