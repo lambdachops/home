@@ -66,6 +66,9 @@
 (rainbow-delimiters-mode 1)
 (evil-mode 1)
 
+(setq erc-autojoin-channels-alist '(("freenode.net" "#clojure" "#leiningen" "#emacs")))
+(erc :server "irc.freenode.net" :port 6667 :nick "lambdachops")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
